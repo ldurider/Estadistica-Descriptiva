@@ -1,9 +1,9 @@
 function [vMax,vMin]=dataTreatmentClass(data)
 
-N=length(data); %Calculo del tamaño de la muestra
+N=length(data); %Calculo del tamaÃ±o de la muestra
 nsobre2=N/2; 
 
-%Calculo de coeficiente para las clases
+%Calculo de coeficiente para las clases con regla de Sturges
 k=floor(1+(3.332*log10(N)));
 
 %Calculo de valores minimo y maximo
@@ -93,8 +93,9 @@ apunt=(((sum(frecuenciai.*(Xi-media).^4))/N)/dEstandar^4)-3;
 %Histograma
 hold on
 %histogram(data)
-bar(Xi,frecuenciai,'blue')
-plot([0 Xi vMax+1],[0 frecuenciai 0],'green')
+%bar(Xi,frecuenciai,'blue')
+%plot([vMin-1 Xi vMax+1],[0 frecuenciai 0],'green')
+histogram(data,k);
 legend('Histograma','Poligono de frecuencias');
 title('Histograma de la muestra');
 
@@ -104,7 +105,7 @@ tabla.Properties.VariableNames = {'RangoInferior','RangoSuperior','Frecuenciafi'
 display(tabla);
 
 %Impresion de valores
-disp(['01. Tamaño de la muestra: ' num2str(N)]);
+disp(['01. TamaÃ±o de la muestra: ' num2str(N)]);
 disp(['02. k                   : ' num2str(k)]);
 disp(['03. Amplitud            : ' num2str(amp)]);
 disp(['04. Valor minimo        : ' num2str(vMin)]);
